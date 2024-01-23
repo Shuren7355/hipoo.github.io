@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Round Typed Search Bar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="WolFramSeach.css">
+    <style>
+    body {
+    margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://unsplash.com/photos/tX-gwcBqU4Q/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8N3x8R3Jhdml0eXxlbnwwfHx8fDE3MDM2MDgzNjB8MA&force=true');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+      line-height: 1.6;
+      padding: 20px;
+      h1 {
+      font-size: 36px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    p {
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+    
+      /* Additional styles for the calculator */
+     .calculator-container {
+    max-width: 400px;
+    margin: 50px auto;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.calculator-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.calculator-body {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-area {
+    max-height: 200px;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bot-message {
+    background-color: #e1f7d5;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+.user-input {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#userInput {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#sendButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#sendButton:hover {
+    background-color: #0056b3;
+}
+
+      /* ... (existing styles) ... */
+
+.open-bot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.bot-overlay {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+}
+
+.bot-overlay.active {
+    display: block;
+}
+
+/* ... (existing styles) ... */
+
+.bot-box {
+    position: relative;
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.open-bot-button {
+    background-color: brown;
+    color: #fff;
+    border: none;
+    border-radius: 500px;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+}
+
+.bot-overlay {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 9998;
+    transform: translateY(-5px);
+    transition: transform 0.3s;
+}
+
+.bot-overlay.active {
+    display: block;
+    transform: translateY(0);
+}
+
+.bot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: brown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.bot-icon img {
+  max-width: 100%;
+  max-height: 100%;
+}
+    </style>
+</head>
+<body>
+  
+    <div class="footer"><h2>The best students require Knowledge</h2></div>
+    <div class="search-container">
+        <div class="search-wrapper">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="searchButton"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+    <div style="position: fixed; bottom: 10px; right: 10px;">
+        <a href="ByMeACoffee.html">
+            <img src="https://svgsilh.com/svg/654328.svg" alt="Coffee Cup Icon" width="40" height="40">
+        </a>
+    </div>
+    
+     <!-- Your calculator bot HTML here -->
+   <div class="bot-box">
+       <div style="position: fixed; bottom: 10px; right: 80px;" class="bot-icon" id="openBotButton">
+         <a href="calculator.html" >
+         <img src="https://svgsilh.com/svg/42454.svg" alt="Bot Icon" width="50" height="50">
+         </a> 
+       
+    <script>
+      document.getElementById('searchInput').addEventListener('keypress', function(event) {
+   if (event.key === 'Enter') {
+     performSearch();
+   }
+ });
+
+ document.getElementById('searchButton').addEventListener('click', function() {
+   performSearch();
+ });
+
+ function performSearch() {
+   const searchQuery = document.getElementById('searchInput').value;
+   if (searchQuery.trim() !== '') {
+     // Redirect to Wolfram Alpha with the search query as a parameter
+     window.location.href = `https://www.wolframalpha.com/input/?i=${encodeURIComponent(searchQuery)}`;
+   }
+ }
+
+ // Calculator functionality
+ document.addEventListener("DOMContentLoaded", function () {
+    const chatArea = document.getElementById("chatArea");
+    const userInput = document.getElementById("userInput");
+    const sendButton = document.getElementById("sendButton");
+    const openBotButton = document.getElementById("botBox");
+    const botOverlay = document.getElementById("botOverlay");
+
+    sendButton.addEventListener("click", sendMessage);
+    openBotButton.addEventListener("click", toggleBotOverlay);
+
+    function sendMessage() {
+        const userMessage = userInput.value.trim(); // Trim whitespace
+        if (!userMessage) return; // Don't send if message is empty
+
+        appendUserMessage(userMessage);
+        const resultMessage = calculateExpression(userMessage);
+        appendBotMessage(resultMessage);
+
+        userInput.value = "";
+        chatArea.scrollTop = chatArea.scrollHeight;
+    }
+
+    function appendUserMessage(message) {
+        const userMessageElement = createMessageElement("user-message", message);
+        chatArea.appendChild(userMessageElement);
+    }
+
+    function appendBotMessage(message) {
+        const botMessageElement = createMessageElement("bot-message", message);
+        chatArea.appendChild(botMessageElement);
+    }
+
+    function createMessageElement(className, content) {
+        const messageElement = document.createElement("div");
+        messageElement.className = className;
+        messageElement.textContent = content;
+        return messageElement;
+    }
+
+    function calculateExpression(expression) {
+        try {
+            const result = eval(expression);
+            return `Result: ${result}`;
+        } catch (error) {
+            return "Invalid expression";
+        }
+    }
+
+    function toggleBotOverlay() {
+        botOverlay.classList.toggle("active");
+
+        if (botOverlay.classList.contains("active")) {
+            const overlayHeight = botOverlay.clientHeight;
+            botOverlay.style.top = `calc(50% - ${overlayHeight / 2}px)`;
+        }
+    }
+});
+
+const openBotButton = document.getElementById("openBotButton");
+const botOverlay = document.getElementById("botOverlay");
+
+openBotButton.addEventListener("click", toggleBotOverlay);
+
+function toggleBotOverlay() {
+  botOverlay.classList.toggle("active");
+}
+ 
+    </script>
+</body>
+</html>

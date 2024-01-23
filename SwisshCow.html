@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  <title>StaySecure</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap");
+
+    /* Define variables */
+    :root {
+      --blue: #9ab3f5;
+      --purple: #9a1663;
+      --white: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+      /* --green: #00ff00;  Placeholder for a green color */
+    }
+
+    /* Common styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style-type: none;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Background */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    /* Search Bar styles */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 700px;
+      padding: 10px;
+      border-radius: 30px;
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: var(--shadow);
+    }
+
+    .dropdown {
+      /* Existing dropdown styles */
+      position: relative;
+      width: 280px;
+      border-radius: 50px;
+      background-color: var(--green);
+      border: 1px solid var(--white);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+    }
+
+    .dropdown-text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1rem;
+      font-weight: 500;
+      background-color: transparent;
+      padding: 1rem 1.5rem;
+      color: var(--white);
+    }
+
+    .dropdown-list {
+      /* Existing dropdown list styles */
+      display: block;
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      width: 100%;
+      border-radius: 15px;
+      max-height: 0;
+      overflow: hidden;
+      background-color: var(--white);
+      transition: max-height 0.5s;
+    }
+
+    .dropdown-list-item {
+      /* Existing dropdown list item styles */
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: 15px;
+      padding: 1rem 0 1rem 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.3s ease, margin-left 0.2s ease;
+    }
+
+    .dropdown-list-item:hover {
+      margin-left: 0.5rem;
+      color: var(--purple);
+    }
+
+    #list.show {
+      max-height: 200px;
+    }
+
+    .search-box {
+      /* Existing search box styles */
+      display: flex;
+      align-items: center;
+      padding-right: 1rem;
+      width: 100%;
+      color: none;
+      backdrop-filter: blur(20px);
+      border: none;
+      border-radius: 20px;
+    }
+
+    .search-box input {
+      /* Existing input styles */
+      padding: 1rem;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--green);
+      border: 0;
+      border-radius: 15px;
+      outline: 0;
+    }
+
+    .search-box i {
+      /* Existing icon styles */
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    .search-box input::placeholder {
+      /* Existing placeholder styles */
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--green);
+    }
+
+    /* Media queries for responsiveness */
+    @media only screen and (max-width: 600px) {
+      .search-bar {
+        min-width: 90%;
+      }
+    }
+    
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .desktop-video {
+      display: none; /* Hide video on smaller screens */
+    }
+    
+    @media only screen and (min-width: 671px) {
+      .desktop-video {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <img src="https://unsplash.com/photos/SPTh4rzR6xQ/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Nnx8Y3JlYXRpdml0eXxlbnwwfHx8fDE3MDIzOTU2Mzh8MA&force=true" class="background-image">
+
+  <!-- Video for desktop view -->
+  <video class="desktop-video" autoplay muted loop>
+    <source src="https://motionbgs.com/dl/hd/1070" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <!-- Search Bar start -->
+  <div class="search-bar">
+    <!-- Dropdown start -->
+    <div class="dropdown">
+      <div id="drop-text" class="dropdown-text">
+        <span id="span">Select Search Engine</span>
+        <i id="icon" class="fa-solid fa-chevron-down"></i>
+      </div>
+      <ul id="list" class="dropdown-list">
+        <li class="dropdown-list-item" data-search="https://www.ecosia.org/search?q=$">Ecosia</li>
+        <li class="dropdown-list-item" data-search="#test.html">Coming Soon...</li> 
+      </ul>
+    </div>
+    <!-- Dropdown ends -->
+
+    <!-- Search box input start -->
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search anything..." onchange="updateSearchEngine(this.value)">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <!-- Search box input ends -->
+  </div>
+  <!-- Search Bar ends -->
+
+  <script>
+    // JavaScript functionalities
+    let dropdownBtnText = document.getElementById("drop-text");
+    let span = document.getElementById("span");
+    let icon = document.getElementById("icon");
+    let list = document.getElementById("list");
+    let input = document.getElementById("search-input");
+    let listItems = document.querySelectorAll(".dropdown-list-item");
+
+    dropdownBtnText.onclick = function () {
+      list.classList.toggle("show");
+      icon.style.rotate = "-180deg";
+    };
+
+    window.onclick = function (e) {
+      if (
+        e.target.id !== "drop-text" &&
+        e.target.id !== "icon" &&
+        e.target.id !== "span"
+      ) {
+        list.classList.remove("show");
+        icon.style.rotate = "0deg";
+      }
+    };
+
+    for (item of listItems) {
+      item.onclick = function (e) {
+        span.innerText = e.target.innerText;
+        input.placeholder = "Search in " + e.target.innerText + "...";
+        input.setAttribute("data-search", e.target.getAttribute("data-search"));
+      };
+    }
+
+    function updateSearchEngine(value) {
+      const searchEngine = input.getAttribute("data-search");
+      if (searchEngine) {
+        window.location.href = searchEngine + value;
+      }
+    }
+
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EducationHub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+            color: #9A7A79;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            border-radius: 0px 0px 0px 0px;
+            position: relative;
+            animation: fadeInUp 2s ease;
+        }
+        
+        header video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: A4C639;
+            color: black;
+            border: block-line;
+            padding: 15px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: block;
+            outline: none;
+            width: 100%;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            animation: fadeInUp 2s ease;
+        }
+        
+        .btn:focus {
+    outline: none;
+}
+
+
+        .hidden-content {
+            display: none;
+            padding-top: 10px;
+            animation: fadeInUp 2s ease ;
+            outline: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+                .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    outline: none;
+  }
+
+  .transparent-button {
+    padding: 22px 54px;
+    border: 1px solid black;
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 90px;
+    outline: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  } 
+  .transparent-button,
+.transparent-button:focus {
+    outline: none;
+}
+
+  .btn:focus {
+    outline: none;
+}
+
+  
+  .transparent-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: black;
+  } 
+.transparent-button,
+.transparent-button:focus {
+    outline: none;
+}
+
+        .clock {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: text-shadow 0.5s ease;
+        }
+
+        .glow {
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+        }
+        
+        #zix {
+      border: none;
+      background-color: transparent;
+      outline: none;
+      animation: fadeInUp 2s ease;
+     
+    } 
+    </style>
+    
+</head>
+<body>
+    <header>
+      <video autoplay muted loop>
+        <source src="https://motionbgs.com/dl/hd/1914" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div style="position: relative; z-index: 1;">
+        <h1>Welcome to our GAIMP</h1>
+        <h4>Try Some New | Try Some Different | Try Everything | But Legal 😜</h4>
+      </div>
+    </header>
+    
+    </div>
+</header>
+
+    <div class="container" id="zix">
+      <div id="clock" class="clock"></div>
+        <h2><button class="btn" onclick="toggleVisibility('story')">Get Start</button></h2>
+        <div id="story" class="hidden-content">
+          <div class="button-container">
+    <a href="SwisshCow.html" class="transparent-button">Stay Secure </a>
+  </div><br>
+  <div class="button-container" id="zix">
+    <a href="calculator.html" class="transparent-button">Calculator Bot</a>
+  </div><br>
+  <div class="button-container">
+    <a href="Traa.html" class="transparent-button">Translation </a>
+  </div><br>
+  <div class="button-container">
+    <a href="ByMeACoffee.html" class="transparent-button">Donation </a>
+  </div>
+    <script>
+        function toggleVisibility(id) {
+            var content = document.getElementById(id);
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        }
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const currentTime = new Date();
+            let hours = currentTime.getHours();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12; // Convert to 12-hour format
+
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            const seconds = currentTime.getSeconds().toString().padStart(2, '0');
+
+            const timeString = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
+            clockElement.innerText = timeString;
+
+            const glowingAlphabets = (hours + minutes + seconds + ampm).toUpperCase();
+            applyGlow(clockElement, glowingAlphabets);
+        }
+
+        function applyGlow(element, glowingText) {
+            const letters = element.innerText.split('');
+
+            letters.forEach((letter, index) => {
+                if (glowingText.includes(letter)) {
+                    element.classList.add('glow');
+                } else {
+                    element.classList.remove('glow');
+                }
+            });
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
+      
+</body>
+</html>
